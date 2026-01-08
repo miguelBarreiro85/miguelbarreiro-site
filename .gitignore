@@ -1,0 +1,25 @@
+# Wrangler output
+.wrangler/
+worker/
+dist/
+
+# Node modules (if you add any build tools later)
+node_modules/
+
+# Environment files
+.env
+.env.local
+.dev.vars
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cloudflare build cache
+.cache/

@@ -1,0 +1,17 @@
+name = "miguel-site"
+compatibility_date = "2024-01-01"
+
+# This is a static site configuration for Cloudflare Pages
+# Pages projects don't use traditional Workers configuration
+# but this file can help with local development via Wrangler
+
+# For Cloudflare Pages deployment:
+# 1. The build output directory should be set to the root or a public folder
+# 2. No build command needed since this is a pure static site
+# 3. All static assets (HTML, CSS, JS) will be served directly
+
+[site]
+bucket = "./public"
+
+# If you want to use Wrangler dev for local testing
+# Run: wrangler pages dev ./public

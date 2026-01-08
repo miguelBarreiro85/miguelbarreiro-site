@@ -45,6 +45,11 @@ body {
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     padding: 1rem 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-hidden {
+    transform: translateY(-100%);
 }
 
 .navbar .container {
@@ -91,6 +96,38 @@ body {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-color);
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Hero Section */
@@ -262,7 +299,7 @@ body {
 }
 
 .about-content {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     background: rgba(26, 31, 58, 0.5);
     padding: 2.5rem;
@@ -270,12 +307,36 @@ body {
     border: 1px solid rgba(59, 130, 246, 0.1);
     backdrop-filter: blur(10px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
 }
 
 .about-content:hover {
     border-color: rgba(59, 130, 246, 0.3);
     box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15),
                 0 0 60px rgba(59, 130, 246, 0.05);
+}
+
+.about-image {
+    max-width: 50%;
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
 }
 
 .about-text p {
@@ -805,8 +866,62 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
     .nav-menu {
-        gap: 1rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(10, 14, 39, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 80px 2rem 2rem;
+        gap: 0;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border-color);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-image {
+        max-width: 250px;
+        margin: 0 auto;
     }
 
     .hero {

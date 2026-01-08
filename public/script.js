@@ -12,7 +12,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active nav link highlighting
+// Active nav link highlighting and hide/show navbar on scroll
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+const scrollThreshold = 100; // Start hiding after scrolling 100px
+
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -32,6 +36,24 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+
+    // Hide/show navbar on scroll
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > scrollThreshold) {
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            navbar.classList.add('navbar-hidden');
+        } else {
+            // Scrolling up
+            navbar.classList.remove('navbar-hidden');
+        }
+    } else {
+        // At the top of the page
+        navbar.classList.remove('navbar-hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
 // Add active style to nav links
@@ -69,15 +91,32 @@ document.querySelectorAll('.project-card, .skill-category, .about-content').forE
     observer.observe(el);
 });
 
-// Mobile menu toggle (optional, if you want to add a mobile menu button)
+// Mobile menu toggle
 function setupMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
+    const navLinks = document.querySelectorAll('.nav-link');
+
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         });
     }
 }
@@ -85,7 +124,12 @@ function setupMobileMenu() {
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        // Close any open menus if added
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        if (navMenu && hamburger) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
     }
 });
 

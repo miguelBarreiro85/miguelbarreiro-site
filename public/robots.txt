@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /mb-meta.png
+Allow: /miguelbarreiro.jpg
+
+Sitemap: https://miguelbarreiro.org/sitemap.xml

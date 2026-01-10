@@ -34,6 +34,10 @@ body {
     padding: 0 20px;
 }
 
+#about .container {
+    padding: 0;
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -301,10 +305,8 @@ body {
 .about-content {
     max-width: 1000px;
     margin: 0 auto;
-    background: rgba(26, 31, 58, 0.5);
     padding: 2.5rem;
     border-radius: 16px;
-    border: 1px solid rgba(59, 130, 246, 0.1);
     backdrop-filter: blur(10px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -372,11 +374,11 @@ body {
 }
 
 .strengths-list li {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #0f1628 100%);
     padding: 0.75rem 1rem;
     padding-left: 2.5rem;
     position: relative;
     color: var(--text-muted);
-    background: rgba(10, 14, 39, 0.5);
     border-radius: 8px;
     border: 1px solid rgba(59, 130, 246, 0.1);
     transition: all 0.3s ease;
@@ -399,9 +401,9 @@ body {
 }
 
 /* Skills Section */
+.about,
 .skills {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #0f1628 100%);
     position: relative;
     overflow: hidden;
 }
@@ -446,7 +448,7 @@ body {
 }
 
 .skill-category {
-    background: rgba(26, 31, 58, 0.5);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #0f1628 100%);
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid rgba(59, 130, 246, 0.1);
@@ -630,7 +632,7 @@ body {
     content: '';
     position: absolute;
     left: -42px;
-    top: 1.4rem;
+    top: 2rem;
     width: 16px;
     height: 16px;
     background: var(--accent-color);
@@ -645,7 +647,7 @@ body {
     content: '';
     position: absolute;
     left: -26px;
-    top: 2rem;
+    top: calc(2rem + 10px);
     width: 26px;
     height: 2px;
     background: linear-gradient(90deg, var(--accent-color), rgba(59, 130, 246, 0.3));
@@ -986,6 +988,7 @@ body {
     .project-card::after {
         left: -20px;
         width: 20px;
+        top: calc(2rem + 9px);
     }
 
     .project-header {
@@ -1056,5 +1059,6 @@ body {
     .project-card::after {
         left: -12px;
         width: 12px;
+        top: calc(2rem + 7px);
     }
 }
